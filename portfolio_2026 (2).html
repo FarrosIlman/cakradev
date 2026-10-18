@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fafafa">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wdth,wght@0,75..125,200..900;1,75..125,200..900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap">
+<title>Portfolio 2026 — Clean Edition</title>
+<style>
+:root {
+  --bg: #fafafa;
+  --fg: #111111;
+  --mut: #666666;
+  --ln: #e4e4e7;
+  --g: #10b981;
+  --gt: #ffffff;
+  --cd: #ffffff;
+  --hv: #f4f4f5;
+  color-scheme: light;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ===== Base ===== */
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(70px + env(safe-area-inset-top, 0px)); }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Mona Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
+  border-left: 1px solid var(--ln);
+  border-right: 1px solid var(--ln);
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 99;
+  background: var(--bg);
+}
+.m, .top, nav a, .lb, .cap, button, .tag {
+  font-family: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ===== Top Bar & Navigation ===== */
+.top {
+  font-size: .72rem;
+  padding: 8px 24px;
+  border-bottom: 1px solid var(--ln);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--mut);
+  background: var(--cd);
+}
+.status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: var(--g);
+  border-radius: 50%;
+  margin-right: 8px;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+nav {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 90;
+  display: flex;
+  align-items: stretch;
+  height: 60px;
+  border-bottom: 1px solid var(--ln);
+  background: rgba(250, 250, 250, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+nav .lg {
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -.04em;
+  border-right: 1px solid var(--ln);
+}
+nav ul { display: flex; list-style: none; padding: 0; }
+nav li { display: flex; }
+nav ul a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  font-size: .75rem;
+  color: var(--mut);
+  border-right: 1px solid var(--ln);
+  transition: color .2s, background .2s;
+}
+nav ul a:hover { color: var(--fg); background: var(--hv); }
+nav .r { margin-left: auto; display: flex; }
+nav .si {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 24px;
+  font-size: .75rem;
+  color: var(--mut);
+  border-left: 1px solid var(--ln);
+  transition: color .2s, background .2s;
+}
+nav .si:hover { color: var(--fg); background: var(--hv); }
+nav .si::after { content: "\2197"; font-size: .7rem; }
+nav .gb { padding: 0 28px; gap: 16px; border-left: 1px solid var(--ln); }
+.bt {
+  display: none;
+  width: 60px;
+  border: 0;
+  border-left: 1px solid var(--ln);
+  background: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.bt span { width: 18px; height: 1.5px; background: var(--fg); transition: transform .25s; }
+nav.open .bt span:first-child { transform: translateY(3.2px) rotate(45deg); }
+nav.open .bt span:last-child { transform: translateY(-3.2px) rotate(-45deg); }
+
+/* ===== Buttons ===== */
+.gb {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  background: var(--fg);
+  color: var(--bg);
+  font: 500 .75rem "JetBrains Mono", monospace;
+  padding: 14px 20px;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity .2s, transform .2s;
+}
+.gb::after { content: "↗"; font-size: .85rem; }
+.gb:hover { opacity: 0.9; }
+.ob {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  background: var(--cd);
+  border: 1px solid var(--ln);
+  color: var(--fg);
+  font: 500 .72rem "JetBrains Mono", monospace;
+  padding: 13px 18px;
+  cursor: pointer;
+  width: 100%;
+  transition: all .2s;
+}
+.ob::after { content: "→"; transition: transform .2s; }
+.ob:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.ob:hover::after { transform: translateX(3px); }
+
+@media(max-width:760px) {
+  nav ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: var(--bg);
+    border-bottom: 1px solid var(--ln);
+    display: none;
+  }
+  nav.open ul { display: flex; }
+  nav ul a { padding: 16px 24px; border-right: 0; border-top: 1px solid var(--ln); width: 100%; }
+  nav .si { display: none; }
+  nav .lg { flex: 1; }
+  nav .r { margin-left: 0; }
+  nav .gb { padding: 0 20px; }
+  .bt { display: flex; }
+}
+
+/* ===== Layout & Grid ===== */
+.wm {
+  font-weight: 800;
+  font-size: clamp(3.2rem, 15vw, 13.5rem);
+  letter-spacing: -.04em;
+  line-height: .88;
+  padding: 36px 28px 28px;
+  white-space: nowrap;
+  overflow: hidden;
+  color: var(--fg);
+}
+.g { display: grid; border-top: 1px solid var(--ln); }
+.g2 { grid-template-columns: 1fr 1fr; }
+.g3 { grid-template-columns: repeat(3, 1fr); }
+.g4 { grid-template-columns: repeat(4, 1fr); }
+.g > * { border-right: 1px solid var(--ln); padding: 32px 28px; }
+.g > *:last-child { border-right: 0; }
+@media(max-width:760px) {
+  .g2, .g3 { grid-template-columns: 1fr; }
+  .g4 { grid-template-columns: 1fr 1fr; }
+  .g > * { border-right: 0; border-bottom: 1px solid var(--ln); padding: 24px 20px; }
+  .g > *:last-child { border-bottom: 0; }
+  .wm { padding: 24px 20px 18px; }
+}
+.lb {
+  font-size: .7rem;
+  color: var(--mut);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+/* ===== Hero ===== */
+.hero .g > * { min-height: 150px; }
+.big {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 500;
+  letter-spacing: -.03em;
+  align-self: end;
+}
+.txt { font-size: .95rem; max-width: 46ch; color: var(--mut); line-height: 1.65; }
+.dots {
+  height: 210px;
+  position: relative;
+  border-top: 1px solid var(--ln);
+  background-color: var(--cd);
+  background-image: radial-gradient(var(--ln) 1.25px, transparent 1.25px);
+  background-size: 18px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 28px;
+  overflow: hidden;
+  user-select: none;
+  cursor: pointer;
+}
+.dino-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.dino-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;
+}
+.dino-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  z-index: 2;
+}
+.pb {
+  border: 1px solid var(--ln);
+  background: var(--bg);
+  font: 500 .7rem "JetBrains Mono", monospace;
+  padding: 7px 16px;
+  color: var(--fg);
+  cursor: pointer;
+  transition: all .2s;
+}
+.pb:hover { border-color: var(--fg); background: var(--hv); }
+.stm {
+  font-size: clamp(1.85rem, 3.8vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -.035em;
+  line-height: 1.15;
+  max-width: 18ch;
+  padding: 90px 28px 70px;
+  border-top: 1px solid var(--ln);
+}
+
+/* ===== Content Blocks ===== */
+.cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+  min-height: 380px;
+  background: var(--cd);
+}
+.cell .t {
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  letter-spacing: -.02em;
+  max-width: 32ch;
+  font-weight: 500;
+  line-height: 1.45;
+}
+.img {
+  position: relative;
+  padding: 0 !important;
+  min-height: 380px;
+  overflow: hidden;
+  background: var(--hv);
+}
+.img .ph {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.08), transparent 55%),
+              linear-gradient(135deg, var(--cd) 0%, var(--hv) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px;
+  font: .72rem "JetBrains Mono", monospace;
+  color: var(--mut);
+}
+.ph-grid {
+  width: 100%;
+  height: 100%;
+  border: 1px dashed var(--ln);
+  display: grid;
+  place-items: center;
+  color: var(--mut);
+  font-size: .75rem;
+}
+.mos { display: grid; width: 100%; height: 100%; position: absolute; inset: 0; gap: 1px; background: var(--ln); }
+.mos i { display: block; transition: background .3s; }
+.sec {
+  font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -.035em;
+  padding: 72px 28px 32px;
+  border-top: 1px solid var(--ln);
+}
+
+/* ===== Selected Work / Highlights ===== */
+.hl .ls { padding: 0; display: flex; flex-direction: column; justify-content: space-between; background: var(--cd); }
+.li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 0;
+  border-bottom: 1px solid var(--ln);
+  background: none;
+  padding: 18px 24px;
+  font-size: .75rem;
+  color: var(--mut);
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: all .2s;
+}
+.li i {
+  width: 44px;
+  height: 32px;
+  border-radius: 4px;
+  background: var(--hv);
+  border: 1px solid var(--ln);
+  display: grid;
+  place-items: center;
+  font-style: normal;
+  font-size: .65rem;
+  color: var(--mut);
+  flex-shrink: 0;
+}
+.li.on { background: var(--hv); color: var(--fg); font-weight: 600; border-left: 3px solid var(--g); }
+.li.on i { background: var(--g); color: var(--gt); border-color: var(--g); }
+.li:hover:not(.on) { background: var(--bg); color: var(--fg); }
+
+.vid { display: grid; grid-template-columns: 1.25fr 1fr; height: 100%; background: var(--cd); }
+.vid .pl {
+  background: radial-gradient(circle at 30% 30%, rgba(16, 185, 129, 0.14), transparent 65%), var(--hv);
+  position: relative;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px;
+  border-right: 1px solid var(--ln);
+}
+.browser-mockup {
+  border: 1px solid var(--ln);
+  background: var(--cd);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  margin: auto 0;
+}
+.browser-top {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--ln);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.browser-top span { width: 7px; height: 7px; border-radius: 50%; background: var(--ln); }
+.browser-body { padding: 24px 18px; font-family: "JetBrains Mono", monospace; font-size: .72rem; color: var(--mut); }
+.vid .d {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+.vid h3 { font-size: 1.5rem; font-weight: 600; letter-spacing: -.02em; margin-bottom: 8px; }
+.vid p { font-size: .88rem; color: var(--mut); line-height: 1.65; }
+.tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.tag {
+  font-size: .65rem;
+  padding: 4px 10px;
+  background: var(--hv);
+  border: 1px solid var(--ln);
+  color: var(--fg);
+  border-radius: 3px;
+}
+.nxt {
+  align-self: flex-start;
+  border: 1px solid var(--ln);
+  background: var(--bg);
+  color: var(--fg);
+  padding: 8px 16px;
+  font-size: .7rem;
+  cursor: pointer;
+  transition: all .2s;
+}
+.nxt:hover { border-color: var(--fg); background: var(--hv); }
+@media(max-width:900px) {
+  .vid { grid-template-columns: 1fr; }
+  .vid .pl { border-right: 0; border-bottom: 1px solid var(--ln); }
+}
+
+/* ===== Skills (Clean Cards) ===== */
+.sp > div {
+  padding: 28px !important;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--cd);
+  transition: background .2s;
+}
+.sp > div:hover { background: var(--hv); }
+.sk-num { font-family: "JetBrains Mono", monospace; font-size: .68rem; color: var(--mut); display: flex; justify-content: space-between; }
+.sk-num::after { content: "●"; color: var(--ln); transition: color .2s; }
+.sp > div:hover .sk-num::after { color: var(--g); }
+.sk-title { font-size: 1.2rem; font-weight: 600; letter-spacing: -.02em; margin-bottom: 4px; }
+.sk-sub { font-family: "JetBrains Mono", monospace; font-size: .72rem; color: var(--mut); }
+
+/* ===== Services / Pricing Tabs ===== */
+.tabs { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ln); background: var(--cd); }
+.tab {
+  background: none;
+  border: 0;
+  border-right: 1px solid var(--ln);
+  padding: 16px 28px;
+  text-align: left;
+  font-size: .74rem;
+  color: var(--mut);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all .2s;
+}
+.tab:last-child { border-right: 0; }
+.tab:hover:not(.on) { color: var(--fg); background: var(--hv); }
+.tab.on { background: var(--fg); color: var(--bg); font-weight: 600; }
+.tab.on::after { content: "●"; font-size: .5rem; color: var(--g); }
+.pn { display: none; }
+.pn.on { display: grid; }
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+  min-height: 300px;
+  background: var(--cd);
+}
+.card h3 { font-size: clamp(1.25rem, 1.8vw, 1.55rem); font-weight: 600; letter-spacing: -.02em; margin-bottom: 10px; }
+.card p { font-size: .88rem; color: var(--mut); line-height: 1.6; }
+.card .pr { font-size: 1.6rem; font-weight: 600; letter-spacing: -.03em; margin-bottom: 16px; }
+
+/* ===== Experience & Agenda ===== */
+.road .t2 {
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  letter-spacing: -.035em;
+  line-height: 1.1;
+  margin: 14px 0 18px;
+  font-weight: 600;
+}
+.ag { background: var(--cd); }
+.ag h3 {
+  font-size: .85rem;
+  font-family: "JetBrains Mono", monospace;
+  color: var(--g);
+  margin-bottom: 12px;
+  grid-column: 1 / -1;
+}
+.ev {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px 28px;
+  font-size: .88rem;
+  padding-bottom: 36px;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--ln);
+}
+.ev:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+.ev time { font: .72rem "JetBrains Mono", monospace; color: var(--mut); padding-top: 3px; }
+.ev b { font-weight: 600; font-size: 1rem; color: var(--fg); }
+.ev span { color: var(--mut); display: block; margin-top: 4px; }
+
+/* ===== Testimonials & Footer ===== */
+.q {
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: -.02em;
+  max-width: 30ch;
+  line-height: 1.45;
+}
+.q::before { content: "“"; color: var(--g); font-size: 1.5em; margin-right: 4px; }
+.ar { display: flex; gap: 8px; position: absolute; right: 24px; bottom: 24px; z-index: 2; }
+.ar button {
+  background: var(--cd);
+  border: 1px solid var(--ln);
+  color: var(--fg);
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.ar button:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.fin .t3 {
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -.035em;
+  line-height: 1.1;
+  max-width: 14ch;
+  margin: auto 0 24px;
+}
+.fin .cell { min-height: 340px; justify-content: center; }
+footer { border-top: 1px solid var(--ln); background: var(--cd); }
+footer .wm { padding: 28px 28px 16px; }
+.fr {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font: .7rem "JetBrains Mono", monospace;
+  color: var(--mut);
+  padding: 20px 28px;
+  border-top: 1px solid var(--ln);
+}
+.fr > div { display: flex; gap: 20px; flex-wrap: wrap; }
+.fr a:hover { color: var(--fg); }
+
+/* ===== GitHub Universe Inspired Motion & Effects ===== */
+.scroll-bar {
+  position: fixed;
+  top: env(safe-area-inset-top, 0px);
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--g);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  z-index: 120;
+}
+.status-dot {
+  animation: pulseDot 2s infinite ease-in-out;
+}
+@keyframes pulseDot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45); }
+  50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+}
+.wm {
+  perspective: 900px;
+}
+.wm .ch {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
+}
+.w-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.w-in {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+.cell, .card, .sp > div {
+  position: relative;
+  overflow: hidden;
+}
+.cell::before, .card::before, .sp > div::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(16, 185, 129, 0.09), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.cell:hover::before, .card:hover::before, .sp > div:hover::before {
+  opacity: 1;
+}
+.cell > *, .card > *, .sp > div > * {
+  position: relative;
+  z-index: 1;
+}
+.mos i {
+  transition: background-color 0.35s ease, transform 0.25s ease;
+}
+.mos i:hover {
+  transform: scale(0.86);
+}
+.browser-mockup {
+  will-change: transform;
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .dots.pl .cat, .status-dot { animation: none; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<div class="scroll-bar" id="sbar"></div>
+
+<div class="top">
+  <span><i class="status-dot"></i>available-for-work/</span>
+  <span id="cd">--:--:-- WIB</span>
+</div>
+
+<nav id="nav">
+  <a class="lg" href="#top" aria-label="Beranda">N&#700;26</a>
+  <ul id="menu">
+    <li><a href="#hl">Proyek</a></li>
+    <li><a href="#spk">Skill</a></li>
+    <li><a href="#ag">Perjalanan</a></li>
+    <li><a href="#pass">Layanan</a></li>
+    <li><a href="#faq">Kontak</a></li>
+  </ul>
+  <div class="r">
+    <a class="si" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+    <a class="gb" href="#contact">Hire me</a>
+    <button class="bt" id="bt" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wm">NAMAʼ26</div>
+  <div class="g g3 hero">
+    <div class="lb">portfolio 2026 / jawa tengah, ID<br><br><span>remote &amp; onsite</span></div>
+    <div class="txt">Halo, saya Nama Kamu. Software Developer yang merancang dan membangun produk web yang bersih, cepat, dan fungsional — dari konsep awal hingga rilis produksi.</div>
+    <div class="lb" style="display:flex;align-items:flex-end;justify-content:flex-end;color:var(--fg)">fokus: web app &amp; sistem</div>
+  </div>
+  <div class="g g2" style="border-top:0">
+    <div class="big" style="border-bottom:0">hello-world/</div>
+    <div style="padding:0"><a class="gb" href="#contact" style="width:100%;height:100%;min-height:84px;padding:0 28px">Mulai Kolaborasi</a></div>
+  </div>
+  <div class="dots" id="dots" title="Klik atau tekan Spasi untuk melompat">
+    <div class="dino-hud">
+      <span class="lb">dino_runner.exe / [SPACE / KLIK = LOMPAT]</span>
+      <span class="lb" id="dino-score" style="color:var(--fg);font-weight:600">HI 00000 &nbsp; 00000</span>
+    </div>
+    <canvas class="dino-canvas" id="dino"></canvas>
+    <div class="dino-bar">
+      <span class="lb" id="dino-msg">mode: auto-pilot (klik untuk main sendiri)</span>
+      <button class="pb" id="pl" type="button">Pause</button>
+    </div>
+  </div>
+</header>
+
+<p class="stm">Mengubah ide kompleks menjadi produk digital yang bersih dan mudah digunakan.</p>
+
+<section id="work">
+  <div class="g g2">
+    <div class="cell">
+      <div class="lb">01 / dev.build()</div>
+      <div class="t">Merancang dan membangun aplikasi web secara menyeluruh: antarmuka yang responsif, arsitektur backend yang terukur, hingga deployment.</div>
+      <button class="ob" style="max-width:240px" onclick="location.hash='hl'">Lihat proyek pilihan</button>
+    </div>
+    <div class="img">
+      <div class="ph">
+        <span>architecture &amp; clean-code</span>
+        <img src="https://placehold.co/600x600/f4f4f5/10b981?text=Foto+Profil+01" alt="Foto Profil" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+        <div class="ph-grid" style="z-index:1;position:relative;background:rgba(250,250,250,0.85);">[ Foto Profil 01 / Workspace ]</div>
+        <span style="z-index:2">01 / 03</span>
+      </div>
+    </div>
+  </div>
+  <div class="g g2">
+    <div class="img">
+      <div class="ph">
+        <span>modern stack &amp; performance</span>
+        <img src="https://placehold.co/600x600/f4f4f5/10b981?text=Foto+Profil+02" alt="Foto Profil" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+        <div class="ph-grid" style="z-index:1;position:relative;background:rgba(250,250,250,0.85);">[ Foto Profil 02 / Aktivitas ]</div>
+        <span style="z-index:2">02 / 03</span>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="lb">02 / dev.learn()</div>
+      <div class="t">Selalu mengadopsi praktik terbaik industri dan teknologi modern untuk memastikan setiap produk mudah dirawat dalam jangka panjang.</div>
+      <button class="ob" style="max-width:240px" onclick="location.hash='spk'">Eksplorasi tech stack</button>
+    </div>
+  </div>
+  <div class="g g2">
+    <div class="cell">
+      <div class="lb">03 / dev.connect()</div>
+      <div class="t">Terbuka untuk proyek freelance, kolaborasi tim produk, maupun peluang kerja penuh waktu. Mari diskusikan kebutuhanmu.</div>
+      <button class="ob" style="max-width:240px" onclick="location.hash='contact'">Hubungi saya</button>
+    </div>
+    <div class="img"><div class="mos" id="m1" data-s="3" data-c="8" data-r="6"></div></div>
+  </div>
+</section>
+
+<section id="hl">
+  <h2 class="sec">selected-work/</h2>
+  <div class="g g2 hl" style="grid-template-columns:1fr 1.65fr;padding:0">
+    <div class="ls">
+      <div>
+        <button class="li on" data-h="TransCare" data-t="React,Node.js,PostgreSQL" data-c="rs-qim-batang.app" data-p="Sistem pemesanan ambulans dan manajemen transportasi pasien untuk RS QIM Batang. Mencakup pemesanan real-time, konfirmasi petugas lapangan, dan pantauan status armada dalam satu alur terpadu."><i>01</i>01_transcare</button>
+        <button class="li" data-h="Sistem Inventori & POS" data-t="Next.js,TypeScript,Tailwind" data-c="dashboard-pos.app" data-p="Aplikasi kasir dan pengelolaan stok multi-cabang dengan laporan penjualan otomatis, peringatan stok menipis, serta sinkronisasi data real-time."><i>02</i>02_inventori-pos</button>
+        <button class="li" data-h="Portal Akademik Kampus" data-t="Vue,Express,MySQL" data-c="akademik-portal.id" data-p="Platform terintegrasi untuk manajemen jadwal kuliah, pengisian KRS daring, dan rekapitulasi nilai mahasiswa dengan antarmuka yang cepat."><i>03</i>03_portal-akademik</button>
+        <button class="li" data-h="Landing Page & Company Profile" data-t="HTML/CSS,Motion,SEO" data-c="studio-kreatif.id" data-p="Website profil perusahaan dengan performa tinggi (skor Lighthouse 98+), desain minimalis, dan struktur konten yang mengoptimalkan konversi klien."><i>04</i>04_company-profile</button>
+      </div>
+      <div style="padding:20px 24px"><button class="ob" onclick="location.hash='contact'">Minta studi kasus lengkap</button></div>
+    </div>
+    <div style="padding:0;border-right:0">
+      <div class="vid">
+        <div class="pl">
+          <div class="lb">project_preview/</div>
+          <div class="browser-mockup">
+            <div class="browser-top"><span></span><span></span><span></span></div>
+            <div class="browser-body">
+              <div style="color:var(--fg);font-weight:600;margin-bottom:6px" id="bc">rs-qim-batang.app</div>
+              <div>status: production_ready</div>
+              <div>response_time: &lt; 50ms</div>
+            </div>
+          </div>
+          <div class="lb">live case study</div>
+        </div>
+        <div class="d">
+          <div>
+            <div class="lb" style="margin-bottom:8px">featured project</div>
+            <h3 id="bh">TransCare</h3>
+            <p id="bp">Sistem pemesanan ambulans dan manajemen transportasi pasien untuk RS QIM Batang. Mencakup pemesanan real-time, konfirmasi petugas lapangan, dan pantauan status armada dalam satu alur terpadu.</p>
+            <div class="tag-list" id="btg">
+              <span class="tag">React</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">PostgreSQL</span>
+            </div>
+          </div>
+          <button class="nxt" id="nx">Proyek Berikutnya →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="spk">
+  <h2 class="sec">featured-skills/</h2>
+  <div class="g g4 sp">
+    <div>
+      <div class="sk-num">01 / FRONTEND</div>
+      <div><div class="sk-title">React &amp; Next.js</div><div class="sk-sub">UI Architecture, SSR, State</div></div>
+    </div>
+    <div>
+      <div class="sk-num">02 / LANGUAGE</div>
+      <div><div class="sk-title">JavaScript &amp; TS</div><div class="sk-sub">ES6+, Type-safe Development</div></div>
+    </div>
+    <div>
+      <div class="sk-num">03 / BACKEND</div>
+      <div><div class="sk-title">Node.js</div><div class="sk-sub">REST API, Auth, Express</div></div>
+    </div>
+    <div>
+      <div class="sk-num">04 / DATABASE</div>
+      <div><div class="sk-title">PostgreSQL</div><div class="sk-sub">Schema Design, Query Opt</div></div>
+    </div>
+    <div>
+      <div class="sk-num">05 / DESIGN</div>
+      <div><div class="sk-title">Figma &amp; UI/UX</div><div class="sk-sub">Wireframing, Design System</div></div>
+    </div>
+    <div>
+      <div class="sk-num">06 / WORKFLOW</div>
+      <div><div class="sk-title">Git &amp; GitHub</div><div class="sk-sub">CI/CD, Code Review, Agile</div></div>
+    </div>
+    <div>
+      <div class="sk-num">07 / AUTOMATION</div>
+      <div><div class="sk-title">Python</div><div class="sk-sub">Scripting, Data Processing</div></div>
+    </div>
+    <div>
+      <div class="sk-num">08 / INFRA</div>
+      <div><div class="sk-title">Cloud &amp; Deploy</div><div class="sk-sub">Docker, Vercel, Linux VPS</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="pass">
+  <div class="lb" style="padding:64px 28px 0">kolaborasi 2026 / jawa tengah, ID</div>
+  <h2 class="sec" style="border:0;padding-top:16px">work-with-me/</h2>
+  <div class="tabs">
+    <button class="tab on" data-t="a">01 / Freelance</button>
+    <button class="tab" data-t="b">02 / Full-time &amp; Tim</button>
+    <button class="tab" data-t="c">03 / Diskusi &amp; Mentoring</button>
+  </div>
+  <div class="g g3 pn on" id="a">
+    <div class="card">
+      <div><h3>website-modern/</h3><p>Landing page, company profile, atau portal informasi yang cepat, responsif, dan ramah SEO.</p></div>
+      <div><div class="pr">Berbasis Proyek</div><button class="ob" onclick="location.hash='contact'">Mulai proyek</button></div>
+    </div>
+    <div class="card">
+      <div><h3>aplikasi-web/</h3><p>Sistem informasi kustom sesuai alur kerja bisnis Anda, mulai dari dashboard hingga integrasi API.</p></div>
+      <div><div class="pr">Custom Scope</div><button class="ob" onclick="location.hash='contact'">Diskusikan kebutuhan</button></div>
+    </div>
+    <div class="card">
+      <div><h3>perawatan-sistem/</h3><p>Optimasi performa, perbaikan bug, pembaruan fitur berkala, dan pemantauan server.</p></div>
+      <div><div class="pr">Retainer Bulanan</div><button class="ob" onclick="location.hash='contact'">Hubungi saya</button></div>
+    </div>
+  </div>
+  <div class="g g3 pn" id="b">
+    <div class="card">
+      <div><h3>remote-engineer/</h3><p>Bergabung sebagai pengembang di tim produk Anda dengan komunikasi asinkron yang rapi.</p></div>
+      <div><div class="pr">Full-time</div><button class="ob" onclick="location.hash='contact'">Tawarkan posisi</button></div>
+    </div>
+    <div class="card">
+      <div><h3>onsite-hybrid/</h3><p>Siap berkolaborasi langsung di lokasi (Jawa Tengah &amp; sekitarnya) untuk pengembangan intensif.</p></div>
+      <div><div class="pr">Full-time</div><button class="ob" onclick="location.hash='contact'">Tawarkan posisi</button></div>
+    </div>
+    <div class="card">
+      <div><h3>kontrak-dedicated/</h3><p>Pengembangan jangka menengah (3–12 bulan) dengan target rilis produk yang terukur.</p></div>
+      <div><div class="pr">Kontrak</div><button class="ob" onclick="location.hash='contact'">Hubungi saya</button></div>
+    </div>
+  </div>
+  <div class="g g3 pn" id="c">
+    <div class="card">
+      <div><h3>review-portofolio/</h3><p>Sesi daring singkat untuk berbagi masukan kode, struktur proyek, atau persiapan karier developer.</p></div>
+      <div><div class="pr">Komunitas</div><button class="ob" onclick="location.hash='contact'">Jadwalkan sesi</button></div>
+    </div>
+    <div class="card">
+      <div><h3>workshop-teknis/</h3><p>Sesi berbagi materi pengembangan web praktis untuk komunitas IT, sekolah, atau kampus.</p></div>
+      <div><div class="pr">Kolaborasi</div><button class="ob" onclick="location.hash='contact'">Ajukan undangan</button></div>
+    </div>
+    <div class="card">
+      <div><h3>konsultasi-mvp/</h3><p>Diskusi awal untuk memilih arsitektur dan teknologi yang tepat sebelum Anda membangun produk.</p></div>
+      <div><div class="pr">Sesi Awal</div><button class="ob" onclick="location.hash='contact'">Jadwalkan diskusi</button></div>
+    </div>
+  </div>
+</section>
+
+<div class="g g2">
+  <div style="background:var(--cd)">
+    <div class="lb">curriculum-vitae</div>
+    <h3 style="font-size:clamp(1.6rem,2.6vw,2.2rem);font-weight:600;letter-spacing:-.03em;margin-top:32px">my-resume/</h3>
+  </div>
+  <div style="display:flex;flex-direction:column;justify-content:space-between;gap:24px;background:var(--cd)">
+    <p class="txt">Unduh ringkasan lengkap pengalaman kerja, riwayat pendidikan, daftar proyek produksi, serta keahlian teknis saya dalam format PDF.</p>
+    <button class="ob" style="max-width:240px">Download CV (PDF)</button>
+  </div>
+</div>
+
+<section id="ag">
+  <h2 class="sec">experience/</h2>
+  <div class="g g2 ag" style="grid-template-columns:1fr 1.65fr">
+    <div style="display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <div class="lb">career_timeline</div>
+        <p class="txt" style="margin-top:16px">Perjalanan profesional dalam membangun perangkat lunak dan menyelesaikan masalah nyata lewat kode.</p>
+      </div>
+      <button class="ob" style="max-width:240px;margin-top:32px" onclick="location.hash='contact'">Minta Referensi</button>
+    </div>
+    <div>
+      <div class="ev">
+        <h3>// 2026 — SEKARANG</h3>
+        <time>2026 — Kini</time>
+        <div><b>Software Developer — Nama Perusahaan</b><span>Merancang fitur baru, meningkatkan performa aplikasi web utama, dan berkolaborasi lintas tim produk.</span></div>
+      </div>
+      <div class="ev">
+        <h3>// 2025 — PROYEK &amp; FREELANCE</h3>
+        <time>2025</time>
+        <div><b>Lead Developer — TransCare (RS QIM Batang)</b><span>Membangun sistem pemesanan ambulans dan manajemen transportasi rumah sakit dari tahap perancangan hingga implementasi.</span></div>
+        <time>2025</time>
+        <div><b>Independent Web Developer</b><span>Menyelesaikan berbagai proyek website dan sistem informasi kustom untuk klien UMKM maupun institusi.</span></div>
+      </div>
+      <div class="ev">
+        <h3>// 2024 — AWAL KARIER</h3>
+        <time>2024</time>
+        <div><b>Junior Web Developer</b><span>Berfokus pada pengembangan antarmuka pengguna yang responsif, integrasi REST API, dan pengujian fitur.</span></div>
+      </div>
+      <div class="ev">
+        <h3>// PENDIDIKAN</h3>
+        <time>2019 — 2023</time>
+        <div><b>S1 Teknik Informatika — Nama Kampus</b><span>Fokus pada rekayasa perangkat lunak, basis data, dan pengembangan aplikasi berbasis web.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="lb" style="padding:64px 28px 16px;border-top:1px solid var(--ln)">testimonials/</div>
+  <div class="g g2">
+    <div class="cell" style="position:relative">
+      <div class="q" id="qq">Bekerja dengan Nama Kamu sangat membantu kelancaran proyek kami: komunikatif, struktur kodenya rapi, dan selalu selesai tepat waktu.</div>
+      <div class="lb" id="qa">— Mitra Proyek / Klien</div>
+    </div>
+    <div class="img">
+      <div class="ph">
+        <span>client_feedback/</span>
+        <img src="https://placehold.co/600x600/f4f4f5/10b981?text=Foto+Testimoni" alt="Foto Testimoni" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+        <div class="ph-grid" style="z-index:1;position:relative;background:rgba(250,250,250,0.85);">[ Dokumentasi Kolaborasi &amp; Rilis Produk ]</div>
+        <span style="z-index:2">verified review</span>
+      </div>
+      <div class="ar"><button id="qp" aria-label="Sebelumnya">‹</button><button id="qn" aria-label="Selanjutnya">›</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="fin" id="contact">
+  <div class="g g2">
+    <div class="img" style="min-height:340px">
+      <img src="https://placehold.co/600x600/f4f4f5/10b981?text=Foto+Kontak" alt="Foto Kontak" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+      <div class="mos" id="m2" data-s="7" data-c="8" data-r="6" style="position:relative;z-index:1;"></div>
+    </div>
+    <div class="cell">
+      <div class="lb">ready-to-start?</div>
+      <div class="t3">lets-build-something/</div>
+      <p class="txt" style="margin-bottom:24px">Kirimkan pesan singkat mengenai ide, proyek, atau peluang kerja sama yang ingin Anda bangun.</p>
+      <a class="gb" href="mailto:email@kamu.com" style="max-width:260px;align-self:flex-start">email@kamu.com</a>
+    </div>
+  </div>
+</section>
+
+<footer id="faq">
+  <div class="wm">NAMAʼ26</div>
+  <div class="fr">
+    <span>© 2026 NAMA KAMU — CLEAN PORTFOLIO EDITION</span>
+    <div>
+      <a href="mailto:email@kamu.com">Email</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">GitHub</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/motion@11.11.17/dist/motion.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var $ = function (sel) { return document.querySelectorAll(sel); };
+  var $1 = function (sel) { return document.querySelector(sel); };
+  var pad = function (n) { return String(n).padStart(2, "0"); };
+
+  /* ---------- Clean Neutral & Emerald Mosaic (Light) ---------- */
+  var PALETTE = ["#10b981", "#34d399", "#d1fae5", "#e4e4e7", "#f4f4f5", "#ededf0", "#ffffff"];
+
+  function seeded(seed) {
+    return function () { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+  }
+
+  function buildMosaic(el) {
+    var cols = +el.dataset.c, rows = +el.dataset.r, rand = seeded(+el.dataset.s);
+    el.style.gridTemplateColumns = "repeat(" + cols + ",1fr)";
+    el.style.gridTemplateRows = "repeat(" + rows + ",1fr)";
+    for (var i = 0; i < cols * rows; i++) {
+      var cell = document.createElement("i");
+      cell.style.background = PALETTE[Math.floor(rand() * PALETTE.length)];
+      cell.addEventListener("mouseenter", function () {
+        this.style.background = "#10b981";
+      });
+      el.appendChild(cell);
+    }
+  }
+
+  function initDinoGame() {
+    var box = $1("#dots");
+    var canvas = $1("#dino");
+    var scoreEl = $1("#dino-score");
+    var msgEl = $1("#dino-msg");
+    var btn = $1("#pl");
+    if (!canvas || !box) return;
+    var ctx = canvas.getContext("2d");
+
+    // 20x18 Chrome T-Rex pixel sprites (2 run frames + 1 jump/idle frame)
+    var DINO_IDLE = [
+      "..........########..",
+      ".........##########.",
+      ".........##.#######.",
+      ".........##########.",
+      ".........#####......",
+      ".........########...",
+      ".#......######......",
+      ".##....#########....",
+      ".###..########.#....",
+      ".#############......",
+      "..############......",
+      "...##########.......",
+      "....########........",
+      ".....######.........",
+      ".....##..##.........",
+      ".....##..##.........",
+      ".....##..##.........",
+      ".....###.###........"
+    ];
+    var DINO_RUN1 = DINO_IDLE.slice(0, 14).concat([
+      ".....##..###........",
+      ".....##.............",
+      ".....##.............",
+      ".....###............"
+    ]);
+    var DINO_RUN2 = DINO_IDLE.slice(0, 14).concat([
+      ".....###..##........",
+      "..........##........",
+      "..........##........",
+      "..........###......."
+    ]);
+    var CACTUS_SM = [
+      "...##...",
+      "..####..",
+      "..####.#",
+      "# ####.#",
+      "#.######",
+      "#.#####.",
+      "######..",
+      "..####..",
+      "..####..",
+      "..####..",
+      "..####..",
+      "..####.."
+    ];
+    var CACTUS_LG = [
+      "....##......",
+      "...####.....",
+      "...####...#.",
+      ".#.####..##.",
+      "##.####..##.",
+      "##.########.",
+      "#######.###.",
+      ".#####..###.",
+      "...####.###.",
+      "...########.",
+      "...######...",
+      "...####.....",
+      "...####.....",
+      "...####....."
+    ];
+
+    var W = 800, H = 210, GROUND_Y = 160, S = 2.4;
+    var running = true, autoPlay = true, gameOver = false;
+    var score = 0, hiScore = 0, speed = 5.2, tickCount = 0;
+    var dino = { x: 64, y: GROUND_Y, vy: 0, jumping: false };
+    var obstacles = [];
+    var clouds = [{ x: 180, y: 48, s: 0.5 }, { x: 460, y: 34, s: 0.35 }, { x: 690, y: 58, s: 0.45 }];
+    var pebbles = [];
+    for (var i = 0; i < 28; i++) {
+      pebbles.push({ x: i * 45 + Math.random() * 25, w: 2 + Math.floor(Math.random() * 6), yOff: (i % 2) * 3 });
+    }
+
+    function resize() {
+      var r = box.getBoundingClientRect();
+      var dpr = window.devicePixelRatio || 1;
+      W = r.width; H = r.height;
+      GROUND_Y = H - 52;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (!dino.jumping) dino.y = GROUND_Y;
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    function drawSprite(sprite, x, y, scale, color) {
+      ctx.fillStyle = color;
+      for (var r = 0; r < sprite.length; r++) {
+        var row = sprite[r];
+        for (var c = 0; c < row.length; c++) {
+          if (row[c] === "#") {
+            ctx.fillRect(Math.floor(x + c * scale), Math.floor(y + r * scale), Math.ceil(scale), Math.ceil(scale));
+          }
+        }
+      }
+    }
+
+    function jump(userTriggered) {
+      if (userTriggered && autoPlay) {
+        autoPlay = false;
+        msgEl.textContent = "mode: manual — tekan Spasi / klik untuk melompat";
+      }
+      if (gameOver) {
+        resetGame();
+        return;
+      }
+      if (!running) {
+        running = true;
+        btn.textContent = "Pause";
+      }
+      if (!dino.jumping) {
+        dino.vy = -10.8;
+        dino.jumping = true;
+      }
+    }
+
+    function resetGame() {
+      gameOver = false;
+      score = 0;
+      speed = 5.2;
+      obstacles = [];
+      dino.y = GROUND_Y;
+      dino.vy = 0;
+      dino.jumping = false;
+      msgEl.textContent = autoPlay
+        ? "mode: auto-pilot (klik untuk main sendiri)"
+        : "mode: manual — tekan Spasi / klik untuk melompat";
+    }
+
+    box.addEventListener("mousedown", function (e) {
+      if (e.target === btn) return;
+      jump(true);
+    });
+    box.addEventListener("touchstart", function (e) {
+      if (e.target === btn) return;
+      e.preventDefault();
+      jump(true);
+    }, { passive: false });
+
+    window.addEventListener("keydown", function (e) {
+      if (e.code === "Space" || e.code === "ArrowUp") {
+        var rect = box.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          e.preventDefault();
+          jump(true);
+        }
+      }
+    });
+
+    btn.onclick = function (e) {
+      e.stopPropagation();
+      if (gameOver) { resetGame(); return; }
+      running = !running;
+      btn.textContent = running ? "Pause" : "Play";
+    };
+
+    function step() {
+      if (running && !gameOver) {
+        tickCount++;
+        score += 0.18;
+        speed = Math.min(10.5, 5.2 + Math.floor(score / 120) * 0.45);
+
+        // Auto-pilot AI jumps neatly before cactus
+        if (autoPlay && !dino.jumping && obstacles.length) {
+          var next = obstacles[0];
+          var dist = next.x - (dino.x + 44);
+          if (dist > 0 && dist < 68 + speed * 5) {
+            jump(false);
+          }
+        }
+
+        // Dino physics
+        if (dino.jumping) {
+          dino.y += dino.vy;
+          dino.vy += 0.62;
+          if (dino.y >= GROUND_Y) {
+            dino.y = GROUND_Y;
+            dino.vy = 0;
+            dino.jumping = false;
+          }
+        }
+
+        // Spawn obstacles
+        var lastX = obstacles.length ? obstacles[obstacles.length - 1].x : 0;
+        if (!obstacles.length || (W - lastX > 240 + Math.random() * 240 && Math.random() < 0.045)) {
+          var big = Math.random() > 0.45;
+          var spr = big ? CACTUS_LG : CACTUS_SM;
+          obstacles.push({
+            x: W + 20,
+            sp: spr,
+            w: spr[0].length * S,
+            h: spr.length * S,
+            green: Math.random() > 0.5
+          });
+        }
+
+        // Update obstacles & collision
+        for (var i = obstacles.length - 1; i >= 0; i--) {
+          var o = obstacles[i];
+          o.x -= speed;
+          var dW = 16 * S, dH = 16 * S;
+          var dTop = dino.y - 18 * S;
+          var oTop = GROUND_Y - o.h;
+          if (
+            dino.x + 8 < o.x + o.w - 4 &&
+            dino.x + dW - 4 > o.x + 4 &&
+            dTop + dH - 4 > oTop + 4
+          ) {
+            if (autoPlay) {
+              dino.vy = -10.5;
+              dino.jumping = true;
+            } else {
+              gameOver = true;
+              if (score > hiScore) hiScore = Math.floor(score);
+              msgEl.textContent = "GAME OVER — klik atau tekan Spasi untuk ulang";
+              btn.textContent = "Restart";
+            }
+          }
+          if (o.x + o.w < -20) obstacles.splice(i, 1);
+        }
+
+        // Move ground pebbles & clouds
+        pebbles.forEach(function (p) {
+          p.x -= speed;
+          if (p.x < -10) p.x = W + Math.random() * 40;
+        });
+        clouds.forEach(function (c) {
+          c.x -= c.s;
+          if (c.x < -60) c.x = W + 40;
+        });
+
+        var sc = Math.floor(score);
+        if (sc > hiScore) hiScore = sc;
+        scoreEl.innerHTML = "HI " + String(hiScore).padStart(5, "0") + " &nbsp; " + String(sc).padStart(5, "0");
+      }
+
+      // Render frame
+      ctx.clearRect(0, 0, W, H);
+
+      // Pixel clouds
+      ctx.fillStyle = "#e4e4e7";
+      clouds.forEach(function (c) {
+        ctx.fillRect(c.x, c.y, 34, 8);
+        ctx.fillRect(c.x + 8, c.y - 6, 18, 6);
+      });
+
+      // Ground line & pebbles
+      ctx.fillStyle = "#d4d4d8";
+      ctx.fillRect(0, GROUND_Y, W, 1.5);
+      pebbles.forEach(function (p) {
+        ctx.fillRect(p.x, GROUND_Y + 5 + p.yOff, p.w, 1.5);
+      });
+
+      // Obstacles (Cacti)
+      obstacles.forEach(function (o) {
+        drawSprite(o.sp, o.x, GROUND_Y - o.h, S, o.green ? "#10b981" : "#111111");
+      });
+
+      // T-Rex sprite selection
+      var frame = dino.jumping
+        ? DINO_IDLE
+        : (Math.floor(tickCount / 6) % 2 === 0 ? DINO_RUN1 : DINO_RUN2);
+      drawSprite(frame, dino.x, dino.y - 18 * S, S, gameOver ? "#ef4444" : "#10b981");
+
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ---------- Live Clock ---------- */
+  function initClock() {
+    var out = $1("#cd");
+    function tick() {
+      var d = new Date();
+      out.textContent = pad(d.getHours()) + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds()) + " WIB";
+    }
+    tick(); setInterval(tick, 1000);
+  }
+
+  /* ---------- Tabs ---------- */
+  function initTabs() {
+    var tabs = $(".tab"), panels = $(".pn");
+    tabs.forEach(function (tab) {
+      tab.onclick = function () {
+        tabs.forEach(function (t) { t.classList.remove("on"); });
+        panels.forEach(function (p) { p.classList.remove("on"); });
+        tab.classList.add("on");
+        $1("#" + tab.dataset.t).classList.add("on");
+      };
+    });
+  }
+
+  /* ---------- Project Highlights ---------- */
+  function initHighlights() {
+    var items = [].slice.call($(".li")), current = 0;
+    function select(i) {
+      current = (i + items.length) % items.length;
+      items.forEach(function (x) { x.classList.remove("on"); });
+      var active = items[current];
+      active.classList.add("on");
+      $1("#bh").textContent = active.dataset.h;
+      $1("#bp").textContent = active.dataset.p;
+      $1("#bc").textContent = active.dataset.c || "project-preview.app";
+      var tags = (active.dataset.t || "").split(",");
+      $1("#btg").innerHTML = tags.map(function (t) { return '<span class="tag">' + t + '</span>'; }).join("");
+    }
+    items.forEach(function (b, i) { b.onclick = function () { select(i); }; });
+    $1("#nx").onclick = function () { select(current + 1); };
+  }
+
+  /* ---------- Testimonials ---------- */
+  function initQuotes() {
+    var quotes = [
+      { q: "Bekerja dengan Nama Kamu sangat membantu kelancaran proyek kami: komunikatif, struktur kodenya rapi, dan selalu selesai tepat waktu.", a: "— Koordinator Proyek, RS QIM Batang" },
+      { q: "Hasil kerjanya bersih dan mudah dirawat oleh tim internal kami. Sangat responsif terhadap masukan selama tahap pengembangan.", a: "— Product Manager, Klien Teknologi" },
+      { q: "Cepat memahami alur bisnis yang kompleks dan menerjemahkannya menjadi aplikasi web yang mudah dipakai oleh staf lapangan.", a: "— Pemilik Bisnis, Klien Freelance" }
+    ], i = 0;
+    function show(n) {
+      i = (n + quotes.length) % quotes.length;
+      $1("#qq").textContent = quotes[i].q;
+      $1("#qa").textContent = quotes[i].a;
+    }
+    $1("#qn").onclick = function () { show(i + 1); };
+    $1("#qp").onclick = function () { show(i - 1); };
+  }
+
+  /* ---------- Mobile Nav ---------- */
+  function initNav() {
+    var nav = $1("#nav"), btn = $1("#bt");
+    function set(open) { nav.classList.toggle("open", open); btn.setAttribute("aria-expanded", open); }
+    btn.onclick = function () { set(!nav.classList.contains("open")); };
+    $("#menu a").forEach(function (a) { a.addEventListener("click", function () { set(false); }); });
+  }
+
+  /* ---------- GitHub Universe Style Motion ---------- */
+  var GLYPHS = "01/_<>-+*#[]{}=";
+
+  function scrambleText(el, finalStr, duration) {
+    if (el._scrambling) return;
+    el._scrambling = true;
+    var text = finalStr || el.getAttribute("data-txt") || el.textContent;
+    el.setAttribute("data-txt", text);
+    var steps = Math.max(12, Math.floor((duration || 0.6) * 40));
+    var frame = 0;
+    var timer = setInterval(function () {
+      frame++;
+      var progress = frame / steps;
+      var n = Math.floor(progress * text.length);
+      el.textContent = text.slice(0, n) + text.slice(n).replace(/\S/g, function () {
+        return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+      });
+      if (frame >= steps) {
+        clearInterval(timer);
+        el.textContent = text;
+        el._scrambling = false;
+      }
+    }, 18);
+  }
+
+  function initMotion() {
+    var M = window.Motion;
+    if (!M || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var animate = M.animate, inView = M.inView, stagger = M.stagger, scroll = M.scroll;
+    var ease = [0.16, 1, 0.3, 1];
+    var spring = { type: "spring", stiffness: 360, damping: 24 };
+
+    // 1. Top Scroll Progress Bar
+    var sbar = $1("#sbar");
+    if (sbar) {
+      scroll(animate(sbar, { scaleX: [0, 1] }, { ease: "linear" }));
+    }
+
+    // 2. Giant Wordmark: 3D character flip-up (GitHub Universe Hero style)
+    $(".wm").forEach(function (wm) {
+      var chars = wm.textContent.trim().split("");
+      wm.innerHTML = chars.map(function (c) {
+        return '<span class="ch" style="opacity:0">' + (c === " " ? "&nbsp;" : c) + "</span>";
+      }).join("");
+      inView(wm, function () {
+        animate(
+          wm.querySelectorAll(".ch"),
+          { opacity: [0, 1], y: ["110%", "0%"], rotateX: [-80, 0] },
+          { delay: stagger(0.045), duration: 0.85, ease: ease }
+        );
+      }, { amount: 0.2 });
+    });
+
+    // 3. Statement & Section Headings: Word-by-word masked slide-up
+    $(".stm, .sec, .fin .t3").forEach(function (hd) {
+      var words = hd.textContent.trim().split(/\s+/);
+      hd.innerHTML = words.map(function (w) {
+        return '<span class="w-wrap"><span class="w-in" style="opacity:0">' + w + '</span></span>';
+      }).join(" ");
+      inView(hd, function () {
+        animate(
+          hd.querySelectorAll(".w-in"),
+          { opacity: [0, 1], y: ["105%", "0%"] },
+          { delay: stagger(0.045), duration: 0.65, ease: ease }
+        );
+      }, { amount: 0.25 });
+    });
+
+    // 4. Hero cells & Interactive Dot Matrix entrance
+    var heroItems = $(".hero > *, .big, .dots");
+    heroItems.forEach(function (e) { e.style.opacity = 0; });
+    animate(
+      heroItems,
+      { opacity: [0, 1], y: [20, 0] },
+      { delay: stagger(0.08, { startDelay: 0.25 }), duration: 0.7, ease: ease }
+    );
+
+    // 5. Monospace Labels & Nav Links: Terminal Scramble-in on view & hover
+    $(".lb, .sk-num, nav ul a, nav .si").forEach(function (el) {
+      if (el.children.length > 0) return;
+      el.setAttribute("data-txt", el.textContent);
+      if (!el.closest("nav")) {
+        inView(el, function () {
+          scrambleText(el, el.getAttribute("data-txt"), 0.65);
+        }, { amount: 0.3 });
+      }
+      el.addEventListener("mouseenter", function () {
+        scrambleText(el, el.getAttribute("data-txt"), 0.45);
+      });
+    });
+
+    // 6. Cards, Skills & Timeline Rows: Staggered 3D spring reveal
+    $(".cell, .card, .sp > div, .ev").forEach(function (el) {
+      el.style.opacity = 0;
+      inView(el, function () {
+        animate(
+          el,
+          { opacity: [0, 1], y: [28, 0], scale: [0.98, 1] },
+          { duration: 0.65, ease: ease }
+        );
+      }, { amount: 0.15 });
+    });
+
+    // 7. Interactive Cursor Spotlight Glow on Grid Cells & Skill Cards
+    $(".cell, .card, .sp > div").forEach(function (card) {
+      card.addEventListener("mousemove", function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        card.style.setProperty("--my", (e.clientY - r.top) + "px");
+      });
+    });
+
+    // 8. Magnetic Pull + Spring Hover on Buttons
+    $(".gb, .ob, .pb, .nxt").forEach(function (btn) {
+      btn.addEventListener("mousemove", function (e) {
+        var r = btn.getBoundingClientRect();
+        var dx = (e.clientX - (r.left + r.width / 2)) * 0.14;
+        var dy = (e.clientY - (r.top + r.height / 2)) * 0.22;
+        animate(btn, { x: dx, y: dy, scale: 1.02 }, { duration: 0.2 });
+      });
+      btn.addEventListener("mouseleave", function () {
+        animate(btn, { x: 0, y: 0, scale: 1 }, spring);
+      });
+    });
+
+    // 9. Parallax on Visual Preview Blocks
+    $(".img .ph").forEach(function (ph) {
+      scroll(
+        animate(ph, { y: [-18, 18], scale: [1.04, 1.04] }),
+        { target: ph.parentElement, offset: ["start end", "end start"] }
+      );
+    });
+
+    // 10. Mosaic Grid: Stagger reveal + Autonomous GitHub Contribution Wave
+    $(".mos").forEach(function (g) {
+      var cells = g.querySelectorAll("i");
+      cells.forEach(function (c) { c.style.opacity = 0; });
+      inView(g, function () {
+        animate(
+          cells,
+          { opacity: [0, 1], scale: [0.5, 1] },
+          { delay: stagger(0.01, { from: "center" }), duration: 0.45, ease: ease }
+        );
+      }, { amount: 0.2 });
+
+      // Ambient living pixel pulse like GitHub Universe contribution matrix
+      setInterval(function () {
+        if (!cells.length) return;
+        var pick = cells[Math.floor(Math.random() * cells.length)];
+        pick.style.background = PALETTE[Math.floor(Math.random() * PALETTE.length)];
+      }, 220);
+    });
+
+    // 11. Smooth Animated Transitions when Switching Projects, Tabs & Quotes
+    var mockup = $1(".browser-mockup");
+    $("#bh, #bp, #qq").forEach(function (node) {
+      new MutationObserver(function () {
+        animate(node, { opacity: [0, 1], y: [10, 0] }, { duration: 0.38, ease: ease });
+        if (node.id === "bh" && mockup) {
+          animate(mockup, { scale: [0.95, 1], y: [8, 0] }, spring);
+          scrambleText($1("#bc"), $1("#bc").textContent, 0.5);
+        }
+      }).observe(node, { childList: true, characterData: true, subtree: true });
+    });
+
+    $(".pn").forEach(function (panel) {
+      new MutationObserver(function () {
+        if (panel.classList.contains("on")) {
+          animate(
+            panel.children,
+            { opacity: [0, 1], y: [18, 0] },
+            { delay: stagger(0.07), duration: 0.45, ease: ease }
+          );
+        }
+      }).observe(panel, { attributes: true, attributeFilter: ["class"] });
+    });
+  }
+
+  /* ---------- Init ---------- */
+  $(".mos").forEach(buildMosaic);
+  initDinoGame();
+  initClock(); initNav(); initTabs(); initHighlights(); initQuotes(); initMotion();
+})();
+</script>
+</body>
+</html>
