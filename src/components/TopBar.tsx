@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 export default function TopBar() {
-  const [timeStr, setTimeStr] = useState<string>('--:--:-- WIB');
+  const [timeStr, setTimeStr] = useState<string>('--:-- WIB');
 
   useEffect(() => {
     const pad = (n: number) => String(n).padStart(2, '0');
@@ -16,32 +16,31 @@ export default function TopBar() {
 
       const h = pad(wibDate.getHours());
       const m = pad(wibDate.getMinutes());
-      const s = pad(wibDate.getSeconds());
-      setTimeStr(`${h}:${m}:${s} WIB`);
+      setTimeStr(`${h}:${m} WIB`);
     };
 
     updateClock();
-    const timer = setInterval(updateClock, 1000);
+    const timer = setInterval(updateClock, 30000);
     return () => clearInterval(timer);
   }, []);
 
   return (
     <div className="top">
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <span>
-          <i className="status-dot" />
-          open-for-projects/
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, overflow: 'hidden' }}>
+        <i className="status-dot" style={{ flexShrink: 0 }} />
+        <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          Siap Menerima Proyek Baru
         </span>
-        <span className="top-subtext" style={{ opacity: 0.6 }}>|</span>
-        <span className="top-subtext" style={{ fontSize: '0.68rem', letterSpacing: '0.04em' }}>
-          Menerima Konsultasi &amp; Pembuatan Sistem Baru
+        <span className="top-mobile-hide" style={{ opacity: 0.4 }}>•</span>
+        <span className="top-mobile-hide" style={{ opacity: 0.85, whiteSpace: 'nowrap' }}>
+          Layanan Seluruh Indonesia
         </span>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-        <span className="top-subtext" style={{ fontSize: '0.68rem', opacity: 0.85 }}>
-          garansi maintenance resmi
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+        <span className="top-mobile-hide" style={{ opacity: 0.75 }}>
+          Pekalongan, ID
         </span>
-        <span id="cd" suppressHydrationWarning style={{ whiteSpace: 'nowrap' }}>
+        <span id="cd" suppressHydrationWarning style={{ whiteSpace: 'nowrap', fontWeight: 600 }}>
           {timeStr}
         </span>
       </div>

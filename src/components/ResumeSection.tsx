@@ -3,89 +3,107 @@
 import { PORTFOLIO_DATA } from '@/data/portfolioData';
 
 export default function ResumeSection() {
-  const { whatsapp } = PORTFOLIO_DATA.personal;
+  const { whatsapp, phone, email, companyProfileUrl } = PORTFOLIO_DATA.personal;
 
   return (
     <div className="g g2" id="konsultasi">
-      <div style={{ background: 'var(--cd)' }}>
-        <div className="lb">konsultasi-gratis // respons-cepat</div>
+      <div className="resume-col" style={{ background: 'var(--cd)' }}>
+        <div className="lb" style={{ color: 'var(--g)', fontWeight: 600 }}>
+          KONSULTASI GRATIS // RESPONS CEPAT
+        </div>
         <h3
           style={{
-            fontSize: 'clamp(1.6rem,2.6vw,2.2rem)',
-            fontWeight: 600,
-            letterSpacing: '-.03em',
-            marginTop: 24,
+            fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)',
+            fontWeight: 700,
+            letterSpacing: '-0.03em',
+            marginTop: 14,
             marginBottom: 16,
+            lineHeight: 1.25,
           }}
         >
-          request-proposal/
+          Konsultasikan Kebutuhan Sistem &amp; Estimasi Biaya (RAB)
         </h3>
 
         <div
-          className="code-box"
           style={{
-            background: '#0d1117',
-            borderRadius: 6,
-            padding: '16px 20px',
-            color: '#7ee787',
-            fontFamily: 'JetBrains Mono, monospace',
-            fontSize: '0.78rem',
-            lineHeight: 1.6,
-            border: '1px solid #30363d',
-            maxWidth: 460,
-            overflowX: 'auto',
+            background: 'var(--hv)',
+            borderRadius: 8,
+            padding: '18px',
+            border: '1px solid var(--ln)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 10,
+            fontSize: '0.82rem',
           }}
         >
-          <div style={{ color: '#8b949e', marginBottom: 4 }}>
-            // Konsultasi Alur Sistem &amp; Estimasi RAB Gratis:
+          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.72rem', color: 'var(--mut)' }}>
+            // Kontak Langsung Tim Software Engineering CakraDev:
           </div>
           <div>
-            WhatsApp:{' '}
+            <strong>WhatsApp: </strong>
             <a
               href={whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: '#58a6ff', textDecoration: 'underline' }}
+              style={{ color: 'var(--g)', textDecoration: 'underline', fontWeight: 600 }}
             >
-              +62 858-7654-3210 (CakraDev)
+              {phone} (CakraDev Studio)
             </a>
           </div>
-          <div style={{ color: '#e6edf3', marginTop: 4 }}>
-            Jaminan: 100% Source Code Milik Anda • Free Training Staf
+          <div>
+            <strong>Email: </strong>
+            <span style={{ color: 'var(--fg)', fontFamily: 'JetBrains Mono, monospace' }}>
+              {email}
+            </span>
+          </div>
+          <div style={{ borderTop: '1px solid var(--ln)', paddingTop: 10, marginTop: 4, color: 'var(--mut)', fontSize: '0.78rem' }}>
+            Jaminan: 100% Hak Milik Source Code • Training Staf Gratis • Garansi Resmi
           </div>
         </div>
       </div>
 
       <div
+        className="resume-col"
         style={{
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          gap: 24,
+          gap: 20,
           background: 'var(--cd)',
         }}
       >
-        <p className="txt">
-          Ceritakan masalah alur kerja operasional bisnis yang ingin Anda rapikan.
-          Tim CakraDev akan menyusunkan dokumen spesifikasi fitur sistem, alur database,
-          serta estimasi jadwal rilis dan anggaran biaya (RAB) yang transparan.
-        </p>
-        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+        <div>
+          <p className="txt" style={{ fontSize: '0.92rem', lineHeight: 1.7, marginBottom: 16 }}>
+            Ceritakan masalah operasional atau kebutuhan sistem yang ingin Anda bangun. Tim CakraDev akan membantu merumuskan spesifikasi fitur, alur database, serta menyusun estimasi jadwal pengerjaan dan rincian anggaran biaya (RAB) yang transparan tanpa komitmen awal.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: '0.84rem', color: 'var(--mut)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span style={{ color: 'var(--g)', fontWeight: 700 }}>✔</span>
+              <span>Diskusi alur sistem via chat WhatsApp atau Google Meet</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span style={{ color: 'var(--g)', fontWeight: 700 }}>✔</span>
+              <span>Dokumen proposal &amp; rancangan estimasi biaya gratis</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="hero-btn-row">
           <a
             href={whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="gb"
-            style={{ maxWidth: 240, padding: '13px 20px' }}
+            className="gb mobile-full-btn"
           >
             Konsultasi WhatsApp Sekarang
           </a>
           <a
-            href="#alur"
-            className="ob"
-            style={{ maxWidth: 220 }}
+            href={companyProfileUrl || '#kontak'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ob mobile-full-btn"
           >
-            Pelajari Alur Kerja
+            Minta Katalog &amp; Proposal
           </a>
         </div>
       </div>

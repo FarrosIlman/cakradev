@@ -6,7 +6,14 @@ export default function ExperienceTimeline() {
 
   return (
     <section id="alur">
-      <h2 className="sec">alur-pengerjaan-sistem/</h2>
+      <div style={{ padding: '60px 28px 20px', background: 'var(--cd)', borderBottom: '1px solid var(--ln)' }}>
+        <div className="lb" style={{ color: 'var(--g)', fontWeight: 600 }}>
+          METODOLOGI SOFTWARE ENGINEERING // ROADMAP JELAS
+        </div>
+        <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 700, letterSpacing: '-0.03em', marginTop: 8 }}>
+          Tahapan &amp; Alur Pengerjaan Sistem
+        </h2>
+      </div>
       <div className="g g2 ag">
         <div
           style={{
@@ -16,7 +23,7 @@ export default function ExperienceTimeline() {
           }}
         >
           <div>
-            <div className="lb">tahapan_transparan // roadmap pengerjaan</div>
+            <div className="lb">PROSES SISTEMATIS // UPDATE PROGRES MINGGUAN</div>
             <p className="txt" style={{ marginTop: 16 }}>
               Proses rekayasa sistem yang teruji dan transparan — Anda dapat memantau langsung
               setiap perkembangan modul sistem setiap minggu tanpa khawatir hasil tidak sesuai harapan.

@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import Link from 'next/link';
 import { PORTFOLIO_DATA } from '@/data/portfolioData';
 
 export default function CollaborationTabs() {
   const tabs = PORTFOLIO_DATA.serviceTabs;
+  const { whatsappNumber } = PORTFOLIO_DATA.personal;
   const [activeTabId, setActiveTabId] = useState(tabs[0].id);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -44,12 +44,17 @@ export default function CollaborationTabs() {
 
   return (
     <section id="paket">
-      <div className="lb" style={{ padding: '64px 28px 0' }}>
-        biaya transparan / 100% hak milik source code tanpa biaya bulanan tersembunyi
+      <div style={{ padding: '60px 28px 20px', background: 'var(--cd)', borderBottom: '1px solid var(--ln)' }}>
+        <div className="lb" style={{ color: 'var(--g)', fontWeight: 600 }}>
+          BIAYA TRANSPARAN // 100% HAK MILIK SOURCE CODE
+        </div>
+        <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 700, letterSpacing: '-0.03em', marginTop: 8 }}>
+          Estimasi Paket &amp; Biaya Pembuatan Sistem
+        </h2>
+        <p style={{ color: 'var(--mut)', fontSize: '0.92rem', marginTop: 6, maxWidth: 640 }}>
+          Tanpa biaya lisensi bulanan per-user. Anda mendapatkan sistem siap pakai, pelatihan staf langsung, garansi resmi, dan source code penuh.
+        </p>
       </div>
-      <h2 className="sec" style={{ border: 0, paddingTop: 16 }}>
-        paket-biaya-sistem/
-      </h2>
 
       <div className="tabs">
         {tabs.map((tab) => {
@@ -68,24 +73,48 @@ export default function CollaborationTabs() {
       </div>
 
       <div className="g g3 pn on" id={activeTabId} ref={panelRef}>
-        {activeTab.items.map((item) => (
-          <div key={item.id} className="card" onMouseMove={handleMouseMove}>
-            <div>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
+        {activeTab.items.map((item) => {
+          const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+            `Halo CakraDev, saya ingin konsultasi dan pesan paket sistem: ${item.title} (${item.tag})`
+          )}`;
+
+          return (
+            <div key={item.id} className="card" onMouseMove={handleMouseMove}>
+              <div>
+                {item.duration && (
+                  <span className="service-delivery-tag">
+                    ⏱ {item.duration}
+                  </span>
+                )}
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+
+                {item.features && item.features.length > 0 && (
+                  <ul className="service-feature-list">
+                    {item.features.map((feat, fIdx) => (
+                      <li key={fIdx} className="service-feature-item">
+                        <span className="icon">✔</span>
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              <div style={{ marginTop: 'auto', paddingTop: 16 }}>
+                <div className="pr">{item.tag}</div>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ob"
+                  style={{ width: '100%', maxWidth: '100%', textAlign: 'center', display: 'block' }}
+                >
+                  {item.actionText} ↗
+                </a>
+              </div>
             </div>
-            <div>
-              <div className="pr">{item.tag}</div>
-              <Link
-                href="#kontak"
-                className="ob"
-                style={{ width: '100%', maxWidth: '100%' }}
-              >
-                {item.actionText}
-              </Link>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

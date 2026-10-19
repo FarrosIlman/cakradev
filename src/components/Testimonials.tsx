@@ -59,6 +59,11 @@ export default function Testimonials() {
           </div>
           <div className="lb" id="qa" ref={authorRef} style={{ color: 'var(--fg)', fontWeight: 600 }}>
             {current.author}
+            {current.role && (
+              <span style={{ display: 'block', fontSize: '0.72rem', color: 'var(--mut)', fontWeight: 400, marginTop: 4 }}>
+                {current.role}
+              </span>
+            )}
           </div>
         </div>
 
