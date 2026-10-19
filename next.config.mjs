@@ -11,6 +11,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'portfolio-firdan.vercel.app',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
     ],
   },
   // Izinkan akses dev server dari perangkat lain dalam satu jaringan Wi-Fi
